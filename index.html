@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Aportes SAFYB · MDV Auditoría y Consultoría</title>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@500;600&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f4f6f8;--surface:#fff;--ink:#14212e;--muted:#566574;--line:#d6dde4;--brand:#0e5a5a;--brand-ink:#fff;--soft:#e2f0ee;--warn:#8a5a00;--warn-bg:#fdf1d8;--bad:#a2321f;--ok:#17653a;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1820;--surface:#17232e;--ink:#e8eef3;--muted:#9aabb9;--line:#2a3a48;--brand:#5fc2b8;--brand-ink:#08201f;--soft:#173a3a;--warn:#f0c060;--warn-bg:#3a2e12;--bad:#ff8f7a;--ok:#6fd49a}}
+:root[data-theme="dark"]{--bg:#0f1820;--surface:#17232e;--ink:#e8eef3;--muted:#9aabb9;--line:#2a3a48;--brand:#5fc2b8;--brand-ink:#08201f;--soft:#173a3a;--warn:#f0c060;--warn-bg:#3a2e12;--bad:#ff8f7a;--ok:#6fd49a}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.55 "Public Sans",system-ui,sans-serif}
+.wrap{max-width:980px;margin:0 auto;padding:0 20px}
+header{padding:36px 0 22px;border-bottom:1px solid var(--line)}
+.firm{font-weight:600;color:var(--brand);font-size:15px}
+h1{font:600 clamp(28px,5vw,42px)/1.15 Newsreader,Georgia,serif;margin:8px 0 10px;max-width:22ch}
+.lead{color:var(--muted);max-width:62ch;margin:0}
+nav{display:flex;gap:6px;overflow-x:auto;padding:14px 0;position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);z-index:5}
+nav button{font:500 15px "Public Sans",sans-serif;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:9px 16px;border-radius:999px;cursor:pointer;white-space:nowrap}
+nav button[aria-selected="true"]{background:var(--brand);color:var(--brand-ink);border-color:var(--brand)}
+button:focus-visible,input:focus-visible,summary:focus-visible,a:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
+section{display:none;padding:10px 0 48px}
+section.on{display:block}
+h2{font:600 26px/1.2 Newsreader,Georgia,serif;margin:18px 0 8px}
+h3{font-size:17px;margin:0 0 4px}
+p{margin:0 0 12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin:16px 0}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px}
+.note{background:var(--warn-bg);color:var(--warn);border-radius:10px;padding:12px 16px;font-size:14.5px;margin:16px 0}
+.scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:15px;background:var(--surface)}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;background:var(--soft)}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+details{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 16px;margin:10px 0}
+summary{cursor:pointer;font-weight:600}
+details p{margin:10px 0 0;color:var(--muted)}
+.calc{display:grid;grid-template-columns:minmax(240px,320px) 1fr;gap:22px;align-items:start}
+@media(max-width:760px){.calc{grid-template-columns:1fr}}
+label{display:block;font-weight:500;font-size:14.5px;margin:12px 0 4px}
+input[type=text],input[type=number]{width:100%;font:inherit;padding:9px 11px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)}
+.presets{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 4px}
+.presets button{font:500 14px "Public Sans",sans-serif;border:1px solid var(--brand);color:var(--brand);background:transparent;padding:6px 12px;border-radius:8px;cursor:pointer}
+.check{display:flex;gap:8px;align-items:center;margin-top:12px;font-size:14.5px}
+.total{font:600 34px/1.1 Newsreader,Georgia,serif;margin:2px 0 14px}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+@media(max-width:520px){.split{grid-template-columns:1fr}}
+.split .box b{display:block;font-size:22px;font-family:Newsreader,Georgia,serif;font-variant-numeric:tabular-nums}
+.small{font-size:13.5px;color:var(--muted)}
+.diff{font-weight:600}
+.ok{color:var(--ok)}.bad{color:var(--bad)}
+ul.links{list-style:none;padding:0;margin:12px 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+ul.links a{display:block;padding:12px 14px;background:var(--surface);border:1px solid var(--line);border-radius:10px;color:var(--brand);font-weight:600;text-decoration:none}
+.bar{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;margin:12px 0}
+.pt input{min-width:110px;padding:6px 8px;text-align:right}.pt input.p{text-align:left;min-width:96px}
+.pt td{white-space:nowrap;vertical-align:middle}.pt tfoot td{font-weight:600;background:var(--soft)}
+.pt button.x{border:0;background:none;color:var(--bad);font-size:18px;cursor:pointer}
+.presets button#clr{border-color:var(--line);color:var(--muted)}
+footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--muted);font-size:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="firm">MDV Auditoría y Consultoría</div>
+  <h1>Aportes al SAFYB para farmacéuticos y bioquímicos</h1>
+  <p class="lead">Qué se paga, sobre qué base se calcula y cómo controlar que el recibo de sueldo y la boleta de aportes coincidan.</p>
+</header>
+
+<nav role="tablist" aria-label="Secciones">
+  <button role="tab" aria-selected="true" data-t="t1">Resumen</button>
+  <button role="tab" aria-selected="false" data-t="t2">Conceptos</button>
+  <button role="tab" aria-selected="false" data-t="t3">Calculadora y control</button>
+  <button role="tab" aria-selected="false" data-t="t4">Piso salarial</button>
+</nav>
+
+<section id="t1" class="on">
+  <h2>Marco general</h2>
+  <div class="grid">
+    <div class="box"><h3>Quién representa al profesional</h3><p>El Sindicato Argentino de Farmacéuticos y Bioquímicos (SAFYB, personería gremial 1784) regula el salario y los adicionales de quienes trabajan con título de farmacéutico en relación de dependencia.</p></div>
+    <div class="box"><h3>Qué es el piso salarial</h3><p>Es el mínimo que debe percibir el profesional, homologado por la autoridad laboral en el marco de los CCT 691/14, 707/15, 794/22 y 795/22.</p></div>
+    <div class="box"><h3>Qué no tiene valor laboral</h3><p>Las remuneraciones u honorarios que publican los Colegios profesionales carecen de valor legal en lo laboral. ADEF, FATSA y UTEDYC no representan a los trabajadores con título de farmacéutico.</p></div>
+  </div>
+  <h2>Cómo se arma el control</h2>
+  <p>Los aportes se calculan con dos bases distintas: el <b>salario básico</b> para capacitación y aporte patronal, y el <b>salario integral</b> para el resto. Después se reparten en dos rubros, que son los que figuran en la boleta.</p>
+  <div class="split">
+    <div class="box"><h3>Aporte patronal</h3><p class="small" style="margin:0">Art. 27 + Art. 28 + 2/3 del seguro (Art. 32)</p></div>
+    <div class="box"><h3>Cuota sindical</h3><p class="small" style="margin:0">Art. 30 + 1/3 del seguro (Art. 32)</p></div>
+  </div>
+  <div class="note">Contenido informativo preparado a partir de la planilla de control de aportes y de la web del SAFYB. Confirmá siempre alícuotas y bases vigentes con el sindicato.</div>
+</section>
+
+<section id="t2">
+  <h2>Conceptos y alícuotas</h2>
+  <div class="scroll"><table>
+    <tr><th>Concepto</th><th class="n">%</th><th>Base</th><th>Dónde se controla</th></tr>
+    <tr><td>Art. 27 · Capacitación</td><td class="n">0,5%</td><td>Salario básico</td><td>Contribución (boleta)</td></tr>
+    <tr><td>Art. 28 · Aporte patronal</td><td class="n">1%</td><td>Salario básico</td><td>Contribución (boleta)</td></tr>
+    <tr><td>Art. 29 · Sindical</td><td class="n">2%</td><td>Salario integral</td><td>Sin importe en la planilla; verificar</td></tr>
+    <tr><td>Art. 30 · Solidaria</td><td class="n">1,5%</td><td>Salario integral</td><td>Recibo de sueldo</td></tr>
+    <tr><td>Art. 32 · Seguro</td><td class="n">1%</td><td>Salario integral</td><td>Contribución (boleta)</td></tr>
+  </table></div>
+  <h2>Preguntas frecuentes</h2>
+  <details><summary>¿Qué diferencia hay entre salario básico e integral?</summary><p>El básico es el sueldo base del piso salarial. El integral suma los adicionales y es la base de los Arts. 29, 30 y 32.</p></details>
+  <details><summary>¿Por qué el seguro se divide en tercios?</summary><p>La planilla asigna 2/3 del seguro al aporte patronal y 1/3 a la cuota sindical. La suma de ambos rubros da el total de la boleta.</p></details>
+  <details><summary>¿Qué debe coincidir con el recibo de sueldo?</summary><p>El Art. 30 (solidaria), que se descuenta al trabajador. El resto corresponde a contribuciones del empleador.</p></details>
+  <details><summary>¿Y el Art. 29?</summary><p>La planilla lo muestra con su alícuota y base, pero sin importe y fuera del total. Conviene confirmar con el SAFYB si aplica en cada caso.</p></details>
+</section>
+
+<section id="t3">
+  <h2>Calculadora y control por períodos</h2>
+  <p>Cargá un renglón por período. Cada fila calcula los aportes y los compara con lo informado; abajo se unifica el análisis.</p>
+  <div class="bar">
+    <div class="check" style="margin:0"><input type="checkbox" id="c29"><label for="c29" style="margin:0">Incluir Art. 29 en el total</label></div>
+    <div class="presets" style="margin:0">
+      <button id="add">Agregar período</button>
+      <button id="ex">Cargar ejemplos de la planilla</button>
+      <button id="clr">Vaciar</button>
+      <button id="cp">Copiar tabla</button>
+    </div>
+  </div>
+  <div class="scroll"><table id="pt" class="pt">
+    <thead><tr>
+      <th>Período</th><th class="n">Base básico</th><th class="n">Base integral</th>
+      <th class="n">Aporte patronal</th><th class="n">Cuota sindical</th><th class="n">Total calculado</th>
+      <th class="n">Var. vs anterior</th><th class="n">Boleta informada</th><th class="n">Dif. boleta</th>
+      <th class="n">Art. 30 recibo</th><th class="n">Dif. recibo</th><th></th>
+    </tr></thead>
+    <tbody id="pb"></tbody>
+    <tfoot id="pf"></tfoot>
+  </table></div>
+  <div id="sum" class="grid"></div>
+  <div class="note">Los ejemplos corresponden a la planilla Control_Aportes y se interpretaron como octubre 2025, marzo 2026 y octubre 2026. En marzo 2026 la planilla no trae el importe de boleta. Las diferencias menores a $1 se toman como coincidencia.</div>
+</section>
+
+<section id="t4">
+  <h2>Piso salarial farmacéutico</h2>
+  <p>Escalas publicadas por el SAFYB. Abren los documentos oficiales en una pestaña nueva.</p>
+  <ul class="links">
+    <li><a target="_blank" rel="noopener" href="https://1drv.ms/b/c/2bed0d6e99d81f2b/IQDZhkt7cO5HTLe61NMMed6mAbPf6ensAVVU2gQHR-_Zlyc?e=A37Bpm">Piso salarial 2026</a></li>
+    <li><a target="_blank" rel="noopener" href="https://1drv.ms/b/c/d5745b941ef2cb5a/Ee9uhiaSq0JOrcL62MbcC8MBBrExTZkabA16mzru40P7zA?e=6wlvXD">Piso salarial 2025</a></li>
+    <li><a target="_blank" rel="noopener" href="https://1drv.ms/b/s!AlrL8h6UW3TVgfxaQyABfDpFk5TrGQ?e=J2mcPu">Piso salarial 2024</a></li>
+    <li><a target="_blank" rel="noopener" href="https://1drv.ms/b/s!AlrL8h6UW3TVy0irgboIDDDFR-Cb?e=hbpRN0">Piso salarial 2023</a></li>
+    <li><a target="_blank" rel="noopener" href="https://drive.google.com/file/d/1r9q0hNUd-OZWsbSCkmpbmvNre-V5ULg3/view?usp=sharing">Piso salarial 2022</a></li>
+  </ul>
+  <p class="small">Fuente: <a target="_blank" rel="noopener" href="https://safyb.org.ar/salarios-farmaceuticos" style="color:var(--brand)">safyb.org.ar/salarios-farmaceuticos</a>. Consultas al SAFYB: safyb@live.com.</p>
+</section>
+
+<footer>MDV Auditoría y Consultoría · Material informativo, no reemplaza el asesoramiento profesional.</footer>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const fmt=n=>new Intl.NumberFormat('es-AR',{style:'currency',currency:'ARS',minimumFractionDigits:2}).format(n);
+const num=s=>{s=String(s||'').trim().replace(/\$|\s/g,'');if(!s)return 0;if(s.includes(',')){s=s.replace(/\./g,'').replace(',','.')}else if((s.match(/\./g)||[]).length>1){s=s.replace(/\./g,'')}const v=parseFloat(s);return isNaN(v)?0:v};
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('nav button').forEach(x=>x.setAttribute('aria-selected',x===b));
+  document.querySelectorAll('section').forEach(s=>s.classList.toggle('on',s.id===b.dataset.t));
+  window.scrollTo({top:0});
+});
+const EX=[{p:'Oct 2025',b:'1966670',i:'4518424,33',rb:'142460,66',rr:'67776,36'},{p:'Mar 2026',b:'2195000',i:'5119837,49',rb:'',rr:'76797,56'},{p:'Oct 2026',b:'2630000',i:'5936588,73',rb:'187864,72',rr:'89048,83'}];
+let rows=[];
+try{const s=localStorage.getItem('mdv_rows');rows=s?JSON.parse(s):EX.map(x=>({...x}))}catch(e){rows=EX.map(x=>({...x}))}
+if(!Array.isArray(rows)||!rows.length)rows=EX.map(x=>({...x}));
+const K=['p','b','i'];
+function render(){
+  $('pb').innerHTML=rows.map((r,n)=>`<tr>
+  <td><input class="p" data-n="${n}" data-k="p" value="${r.p}" aria-label="Período"></td>
+  <td><input data-n="${n}" data-k="b" value="${r.b}" inputmode="decimal" aria-label="Base básico"></td>
+  <td><input data-n="${n}" data-k="i" value="${r.i}" inputmode="decimal" aria-label="Base integral"></td>
+  <td class="n" id="ap${n}"></td><td class="n" id="cs${n}"></td><td class="n" id="to${n}"></td><td class="n" id="va${n}"></td>
+  <td><input data-n="${n}" data-k="rb" value="${r.rb}" inputmode="decimal" aria-label="Boleta informada"></td><td class="n" id="db${n}"></td>
+  <td><input data-n="${n}" data-k="rr" value="${r.rr}" inputmode="decimal" aria-label="Art. 30 del recibo"></td><td class="n" id="dr${n}"></td>
+  <td><button class="x" data-del="${n}" aria-label="Quitar período">×</button></td></tr>`).join('');
+  update();
+}
+function diff(calc,real,has){if(!has)return '<span class="small">sin dato</span>';const d=real-calc,ok=Math.abs(d)<1;return `<span class="diff ${ok?'ok':'bad'}">${ok?'Coincide':fmt(d)}</span>`}
+let last=[];
+function update(){
+  const inc=$('c29').checked;let T={ap:0,cs:0,to:0,a29:0,b:0,i:0},prev=null;last=[];
+  rows.forEach((r,n)=>{
+    const b=num(r.b),i=num(r.i),a29=i*.02,a32=i*.01,a30=i*.015;
+    const ap=b*.015+a32*2/3,cs=a30+a32/3,to=ap+cs+(inc?a29:0);
+    $('ap'+n).textContent=fmt(ap);$('cs'+n).textContent=fmt(cs);$('to'+n).textContent=fmt(to);
+    $('va'+n).textContent=prev&&prev>0?((to/prev-1)*100).toLocaleString('es-AR',{maximumFractionDigits:1,signDisplay:'exceptZero'})+'%':'–';
+    const hb=String(r.rb).trim()!=='',hr=String(r.rr).trim()!=='';
+    $('db'+n).innerHTML=diff(to,num(r.rb),hb);$('dr'+n).innerHTML=diff(a30,num(r.rr),hr);
+    prev=to;T.ap+=ap;T.cs+=cs;T.to+=to;T.a29+=a29;T.b+=b;T.i+=i;
+    last.push([r.p,b,i,ap,cs,to]);
+  });
+  const nr=rows.length||1;
+  $('pf').innerHTML=`<tr><td>Total</td><td class="n">${fmt(T.b)}</td><td class="n">${fmt(T.i)}</td><td class="n">${fmt(T.ap)}</td><td class="n">${fmt(T.cs)}</td><td class="n">${fmt(T.to)}</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>`;
+  const mx=last.reduce((a,x)=>x[5]>a[5]?x:a,['',0,0,0,0,-1]);
+  const eff=T.i?T.to/T.i*100:0;
+  $('sum').innerHTML=`<div class="box"><span class="small">Total de aportes en ${rows.length} período(s)</span><div class="total" style="font-size:26px;margin:4px 0 0">${fmt(T.to)}</div></div>
+  <div class="box"><span class="small">Promedio por período</span><div class="total" style="font-size:26px;margin:4px 0 0">${fmt(T.to/nr)}</div></div>
+  <div class="box"><span class="small">Carga sobre salario integral</span><div class="total" style="font-size:26px;margin:4px 0 0">${eff.toLocaleString('es-AR',{maximumFractionDigits:2})}%</div></div>
+  <div class="box"><span class="small">Período de mayor aporte</span><div class="total" style="font-size:26px;margin:4px 0 0">${mx[0]||'–'}</div></div>`;
+  try{localStorage.setItem('mdv_rows',JSON.stringify(rows))}catch(e){}
+}
+$('pb').addEventListener('input',e=>{const t=e.target;if(t.dataset.k){rows[+t.dataset.n][t.dataset.k]=t.value;update()}});
+$('pb').addEventListener('click',e=>{const d=e.target.dataset.del;if(d!==undefined){rows.splice(+d,1);render()}});
+$('c29').addEventListener('input',update);
+$('add').onclick=()=>{rows.push({p:'',b:'',i:'',rb:'',rr:''});render()};
+$('ex').onclick=()=>{rows=EX.map(x=>({...x}));render()};
+$('clr').onclick=()=>{rows=[{p:'',b:'',i:'',rb:'',rr:''}];render()};
+$('cp').onclick=async()=>{
+  const t=['Período','Base básico','Base integral','Aporte patronal','Cuota sindical','Total'].join('\t')+'\n'+last.map(r=>r.map((v,k)=>k?v.toFixed(2).replace('.',','):v).join('\t')).join('\n');
+  try{await navigator.clipboard.writeText(t);$('cp').textContent='Copiada'}catch(e){$('cp').textContent='No se pudo copiar'}
+  setTimeout(()=>$('cp').textContent='Copiar tabla',1800);
+};
+render();
+</script>
+</body>
+</html>
